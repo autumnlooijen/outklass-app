@@ -1,0 +1,47 @@
+This is the original Outklass code; it should be working.  It puts data into a Google spreadsheet for use with a Glide frontend.
+
+How to use it:  
+1. go to this Google spreadsheet 
+   https://docs.google.com/spreadsheets/d/1wttJs-UoTqZsajJdqtgsJzPOanGZiz_ecJ_680vJ_EM/edit#gid=0
+...copy it, and grab the copy's spreadsheet ID from the URL (the really long string of numbers & letters)
+2. Go to script.google.com and log in with your child's school Google account.
+3. Create a new project
+4. copy the code into Code.gs and appsscript.json .  
+   Edit Code.js to add your spreadsheet ID where it says 
+   Edit code.js to add your twilio account SID in the two places where it says TWILIO_ACCOUNT_SID
+   Edit code.js to add your twilio auth token in the two places where it says TWILIO_AUTH_TOKEN
+   Edit code.js to add your twilio phone number where it says TWILIO_FROM_PHONE_NUMBER
+5. Go to Edit > Current project's triggers
+   Hit the 'Add Trigger' button and set it up to run two functions:
+   * sendNotifications every 5 minutes
+   * updateCourseworkSpreadsheet every 30 minutes
+6. Go to Glide apps and build a frontend based on these screenshots (sorry, we can't find a way to share the frontend):
+
+   https://drive.google.com/drive/folders/1XTxH3QLCmZcKJqrcABhlD4iGN8Ok2h22
+
+(We thought there was a way to save the frontend as a template in Glide so you could get started fast... but apparently that's not on the table.)
+
+
+FUNCTIONS
+
+hardRefreshCourseworkSpreadsheet -- 
+   clear the entire coursework spreadsheet and re-fill it with ONLY THIS USER's latest info from Google Classroom
+   this is just for testing, obviously
+
+updateCourseworkSpreadsheet --
+   update the user's coursework with the latest from Google Classroom
+   it was run from EACH user's account every ~30 minutes
+
+sendNotifications --
+   check the Notifications sheet of the Google spreaadsheet, and send any notifications that are at or past the scheduled time
+   we were running this every ~10 minutes to process the notifications
+   it should only be run from ONE user's account
+   the scheduled notifications were telling kids when assignments were coming due... apparently it was annoying.  you might want to drop that and do _only_ celebration messages... which are always sent ASAP
+
+
+
+
+KNOWN BUGS:
+* celebration notifications had a significant delay; they need to be immediate or close to it
+* I seem to remember this having timezone issues
+* This isn't a bug but the assignment reminders were super annoying; our kids hated them.  Also it gets expensive to sms so much
