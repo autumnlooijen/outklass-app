@@ -1,4 +1,6 @@
-This directory has the code for a webapp that logs in a user and imports the user's data from Google Classroom.
+The outklass-backend/ directory has code to process the glide-sheet queue.  That queue moves assignments from firebase to the Google spreadsheet, so the Glide no-code frontend app has access to the data.  (It doesn't work with firebase.)
+
+The main directory has the code for a webapp that logs in a user and imports the user's data from Google Classroom.
 
 To make the webapp, create a project at script.google.com, and cut & paste the code from these two files into your project.
 
