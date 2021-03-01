@@ -1,0 +1,27 @@
+{
+  "name": "outklass",
+  "version": "0.1.0",
+  "description": "Outklass beta",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/autumnlooijen/outklass-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/autumnlooijen/outklass-app/issues"
+  },
+  "homepage": "https://github.com/autumnlooijen/outklass-app#readme",
+  "devDependencies": {
+    "firebase": "^8.2.5"
+  },
+  "dependencies": {
+    "async-lock": "^1.2.8",
+    "axios": "^0.21.1",
+    "firebase-admin": "^9.5.0"
+  }
+}

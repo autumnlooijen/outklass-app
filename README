@@ -1,0 +1,70 @@
+
+CURRENT STATUS
+Okay... this code is a mess.  *facepalm*  I was in the middle of re-working it when we decided to recall the SF school board, and that campaign has really taken off.
+
+I'd love to fix this code up and make it nice for you... but I'm swamped.
+
+Much of the code is half-written, and the stuff that is written is not fully debugged.  I was basing it off our original version, which was a glide app + some scripts copy+pasted into our kids' accounts at script.google.com... obviously not scalable.
+
+FILES
+alpha_version/
+   contains the original version of the backend code. This version works by cutting & pasting the code into script.google.com, in each student's Google account, and it uses a Google spreadsheet / Glide frontend -- nice for fast iteration.  See the README for details.
+
+service-account.json
+   You'll need to get this file from firebase
+
+apps_script/
+   The backend code for the webapp that will log new users in to Google Classroom and put their info into firebase.  The app will redirect new users here for login.  (This isn't written yet.)  Google authenticates them, and then we put their Google Classroom info into firebase (and from there into the Google sheet, for now -- can drop the Google sheet once the frontend can talk to firebase (which Glide can't do)).
+
+backend/
+   Code to check the firebase queue for SMS messages that need to go out, and send them.  This should be working, as long as your environmental variables are set up correctly.
+
+
+GETTING IT TO WORK
+You'll need to set up some env variables:
+   process.env.TWILIO_ACCOUNT_SID
+   process.env.TWILIO_AUTH_TOKEN
+   process.env.FIREBASE_URL
+
+...and you'll need to set up a Firebase Realtime database
+...and a Google sheet for the Glide app frontend to read from (until there's a better frontend)
+   (for the Google sheet, copy this:    https://docs.google.com/spreadsheets/d/1wttJs-UoTqZsajJdqtgsJzPOanGZiz_ecJ_680vJ_EM/edit#gid=0    )
+
+
+TO DO
+* A heck of a lot of debugging
+* The webapp that does the initial login between the user and Google classroom, and puts the user's info into firebase, doesn't seem to work.  Haven't looked into why.
+* I'd intended to hook this up to pub/sub for Google Classroom, so we'd be notified of assignment completion and could drop that into the firebase queue.  This has not been started.
+* Examine security / privacy issues and make sure we're good
+
+
+THIS IS A NON-REVENUE PROJECT
+Because of the terms of use for Google Classroom, you can't make money with this.  BUT every parent we know wants this -- desperately -- and it might be fun to put together a project that is likely to get traction, fast.  At least, we thought so.
+
+
+WHAT OUR PLAN WAS
+We were going to run this with a glide apps frontend, which should support maybe 200 users before you hit the limit of Google Sheets cells.
+
+That's good enough for testing + user feedback, right?
+
+At that point, the app will be really slow, so if you go that route, I'd recommend having a better frontend (that pulls from Firebase directly) ready to go.  (That's better from a security standpoint, too.)
+
+For the frontend, it looks like Glide doesn't let you publish your work as a share-able template anymore, so the best I can give you is screenshots.  They're here: 
+
+   https://drive.google.com/drive/folders/1XTxH3QLCmZcKJqrcABhlD4iGN8Ok2h22
+
+
+
+KNOWN BUGS
+I was in the middle of refactoring the code / reworking the backend to use firebase.  Not everything is written, and of the stuff that's written, much of it is not debugged.
+The code needs to be aware of the assignment's timezone & the user's timezone.  Currently it's not.
+
+
+POTENTIAL FEATURES
+We were sending quick celebrations via SMS when an assignment was completed, but that gets expensive -- discord might be a better option.
+We also thought it would be cool, if you had enough traction in a single school, to find students who are working on the same assignment.  You could have a button that lets them find other students who haven't done the work (for collaboration) or other students who have (if they're stuck).
+
+
+THINGS WE LEARNED FROM THE IN-HOUSE VERSION
+The original version had an auto-nagger that would send an SMS an hour before each assignment was due.  Our kids HATED it.  Do not recommend.
+Celebrating assignment completion needs to happen right after the assignment is completed.

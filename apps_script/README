@@ -1,0 +1,22 @@
+This directory has the code for a webapp that logs in a user and imports the user's data from Google Classroom.
+
+To make the webapp, create a project at script.google.com, and cut & paste the code from these two files into your project.
+
+You'll publish this code as a webapp via script.google.com .  Set it up to run as the user who visits the webapp's URL (not as the user who owns the code).  
+
+When you go to the webapp's URL, it asks the user to log into Google Classroom and pulls the user's data into Firebase.
+
+The idea is, when a new user joins the Outklass app, the frontend redirects them to this webapp to load the data, and then back to the app.  This way Google handles all the authentication.
+
+It could use a prettier UI.
+
+NOTE: I thought this was working when I ran it as myself, but it failed when I ran it as another user.  It may just be a permissions issue, or there may be an issue with the code.
+
+
+You'll need to fill in this section with your own Firebase info
+   var FIREBASE_URL = "FIREBASE_URL";
+   var PRIVATE_KEY  = "FIREBASE_PRIVATE_KEY";
+   var CLIENT_EMAIL = 'FIREBASE_SERVICE_ACCOUNT_EMAIL';
+
+
+It also has a function to update the user's classwork.

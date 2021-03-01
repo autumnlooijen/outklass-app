@@ -1,0 +1,26 @@
+{
+  "timeZone": "America/Los_Angeles",
+  "dependencies": {
+    "enabledAdvancedServices": [{
+      "userSymbol": "Classroom",
+      "serviceId": "classroom",
+      "version": "v1"
+    }],
+    "libraries": [{
+      "userSymbol": "FirebaseApp",
+      "libraryId": "1hguuh4Zx72XVC1Zldm_vTtcUUKUA6iBUOoGnJUWLfqDWx5WlOJHqYkrt",
+      "version": "30"
+    }, {
+      "userSymbol": "OAuth2",
+      "libraryId": "1B7FSrk5Zi6L1rSxxTDgDEUsPzlukDsi4KGuTMorsTQHhGBzBkMun4iDF",
+      "version": "40"
+    }]
+  },
+  "webapp": {
+    "access": "ANYONE",
+    "executeAs": "USER_ACCESSING"
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "oauthScopes": ["https://www.googleapis.com/auth/classroom.courses.readonly", "https://www.googleapis.com/auth/classroom.coursework.me.readonly", "https://www.googleapis.com/auth/classroom.push-notifications", "https://www.googleapis.com/auth/script.external_request", "https://www.googleapis.com/auth/script.scriptapp", "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/firebase.database"],
+  "runtimeVersion": "V8"
+}
